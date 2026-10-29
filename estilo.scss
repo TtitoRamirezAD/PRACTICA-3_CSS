@@ -1,0 +1,83 @@
+$color-azul: blue;
+$color-rojo: red;
+$color-amarillo: yellow;
+$color-blanco: white;
+
+@mixin vendor-transform($val) {
+  -webkit-transform: $val;
+  -moz-transform: $val;
+  transform: $val;
+}
+@mixin vendor-animation($params) {
+  -webkit-animation: $params;
+  -moz-animation: $params;
+  animation: $params;
+}
+body {
+  margin: 0;
+  font-family: sans-serif;
+}
+
+.menu {
+  background-color: $color-azul;
+  padding: 15px;
+  a {
+    color: $color-blanco;
+    text-decoration: none;
+    margin-right: 20px;
+    border-bottom: 2px solid transparent;
+    transition-property: color, border-color;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-out;
+    transition-delay: 0.1s;
+    &:hover {
+      color: $color-amarillo;
+      border-color: $color-amarillo;
+    }
+  }
+}
+
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    @include vendor-transform(translateY(20px));
+  }
+  100% {
+    opacity: 1;
+    @include vendor-transform(translateY(0));
+  }
+}
+.servicios {
+  padding: 20px;
+}
+.card {
+  display: inline-block;
+  vertical-align: top;
+  width: 30%;
+  margin: 1%;
+  padding: 15px;
+  box-sizing: border-box;
+  border: 2px solid $color-rojo;
+  @include vendor-animation(fadeUp 0.6s ease-out both);
+}
+
+.menu {
+  position: relative;
+  @supports (position: sticky) {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+}
+
+.contacto {
+  margin-top: 1000px;
+  text-align: center;
+  background-color: $color-azul;
+  color: white;
+  padding: 25px;
+
+  h2 {
+    color: $color-amarillo;
+  }
+}
